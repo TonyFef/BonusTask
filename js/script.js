@@ -9,6 +9,14 @@ const removeDescr = () => {
     description.remove();
 };
 
+const charsShower = () => {
+    let charsList = document.getElementsByClassName("char__item");
+    // console.log(charsList.length);
+    // if (charsList.length > 9) {
+    //     charsList[9 - 50].style.display = 'none'
+    // }
+};
+
 dataStart
     .then((response) => response.json())
     .then((data) => {
@@ -37,7 +45,6 @@ dataStart
     })
     .then((data) => {
         let charsList = document.getElementsByClassName("char__item");
-        // console.log(charsList);
 
         for (let char of charsList) {
             char.addEventListener("click", (e) => {
@@ -46,8 +53,7 @@ dataStart
                 let parentForappend = document.querySelector(".char__list");
 
                 let parent = e.target.closest(".char__item");
-                let parentImgSrc = parent.querySelector('img').src 
-                // console.log(parentImg);
+                let parentImgSrc = parent.querySelector("img").src;
                 let parentName = parent.querySelector(".char__name").textContent;
                 let parentRealName = parent.querySelector(".char__realName").textContent;
                 let parentSpecies = parent.querySelector(".char__species").textContent;
@@ -57,33 +63,70 @@ dataStart
                 let parentDeathDay = parent.querySelector(".char__deathDay").textContent;
                 let parentStatus = parent.querySelector(".char__status").textContent;
                 let parentActors = parent.querySelector(".char__actors").textContent;
-                let parentMovies = parent.querySelector(".char__movies").textContent;
+                let parentMovies = parent.querySelector(".char__movies").textContent.split(",").join("<br>");
+
+                // let propsArr = [
+                //     parentName,
+                //     parentRealName,
+                //     parentSpecies,
+                //     parentCitizenship,
+                //     parentBirthDay,
+                //     parentDeathDay,
+                //     parentStatus,
+                //     parentActors,
+                // ];
+                // console.log(propsArr);
+
+                // propsArr.forEach((prop) => {
+                //     if (!prop) {
+                //         prop = "---";
+                //     }
+                // });
 
                 let newCharDescr = document.createElement("div");
                 newCharDescr.classList.add("char__info");
 
                 newCharDescr.innerHTML = `
-                    <div className="char__basics">
-                    <img src="${parentImgSrc}" alt="{name}" class='croppedForInfo'/>
-                        <div>
-                            <div className="char__info-name">${parentName}</div>
-                            <div className="char__info-realName">${parentRealName}</div>
-                            <div className="char__info-name">${parentSpecies}</div>
-                            <div className="char__info-name">${parentGender}</div>
-                            <div className="char__info-name">${parentCitizenship}</div>
-                            <div className="char__info-name">${parentBirthDay}</div>
-                            <div className="char__info-name">${parentDeathDay}</div>
-                            <div className="char__info-name">${parentStatus}</div>
-                            <div className="char__info-name">${parentActors}</div>
-                            
-                            
+                    <div class="char__basics">
+                        <div class="descr-nowrap">
+                            <div class="first-descr">
+                                <img src="${parentImgSrc}" alt="{name}" class='croppedForInfo'/>
+                                <div class="first-descr-name">${parentName}</div>
+                            </div>    
+                            <div class="center-descr">
+                                <div class="center-descr__text">Real name: </div>
+                                <div class="center-descr__text">Species: </div>
+                                <div class="center-descr__text">Gender: </div>
+                                <div class="center-descr__text">Citizenship: </div>
+                                <div class="center-descr__text">BirthDay: </div>
+                                <div class="center-descr__text">DeathDay: </div>
+                                <div class="center-descr__text">Status: </div>
+                                <div class="center-descr__text">Actors: </div>    
+                            </div>
+                            <div class="left-descr">
+                                <div class="char__info-realName">${parentRealName}</div>
+                                <div class="char__info-name">${parentSpecies}</div>
+                                <div class="char__info-name">${parentGender}</div>
+                                <div class="char__info-name">${parentCitizenship}</div>
+                                <div class="char__info-name">${parentBirthDay}</div>
+                                <div class="char__info-name">${parentDeathDay}</div>
+                                <div class="char__info-name">${parentStatus}</div>
+                                <div class="char__info-name">${parentActors}</div>    
+                            </div>
                         </div>
+                    <div class="movies-list">
+                    <ul className="char__movies-list">
+                        <li className="char__movies-item">
+                            <span>Movies: </span>
+                            <div>${parentMovies}</div>
+                        </li>
+                    </ul>
                     </div>
-                    <div className="char__comics">Comics:</div>
-                    <ul className="char__comics-list">
-                        <li key="{i}" className="char__comics-item">{item.name}</li>
-                    </ul>`;
+                </div>`;
                 parentForappend.append(newCharDescr);
             });
         }
+    })
+    .then(() => {
+        charsShower();
     });
