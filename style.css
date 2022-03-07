@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    font-family: "Balsamiq Sans", cursive;
+}
+.select-css {
+    display: block;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: 0.6em 1.4em 0.5em 0.8em;
+    width: 25%;
+    max-width: 25%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 0.5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+        linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+}
+.select-css::-ms-expand {
+    display: none;
+}
+.select-css:hover {
+    border-color: #888;
+}
+.select-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+}
+.select-css option {
+    font-weight: normal;
+}
+li,
+ul,
+dl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.char__content {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 650px 425px;
+    grid-column-gap: 25px;
+    column-gap: 25px;
+    align-items: start;
+}
+.char__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-column-gap: 25px;
+    column-gap: 25px;
+    grid-row-gap: 30px;
+    row-gap: 30px;
+}
+.char__item {
+    width: 200px;
+    height: 318px;
+    background-color: #232222;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 25%);
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s transform;
+}
+.char__item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transform: translate(-15px, -15px);
+}
+.button__long {
+    display: block;
+    width: 170px;
+    margin: 45px auto 0 auto;
+}
+.char__name {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    text-transform: uppercase;
+    color: #fff;
+    /* margin-top: -75px;
+    margin-bottom: 50px;
+    padding-left: 10px; */
+}
+.char__info {
+    padding: 25px;
+    box-shadow: 0px 0px 20px rgb(0 0 0 / 25%);
+    /* position: relative; */
+    width: 425px;
+    height: 211px;
+    position: absolute;
+    z-index: 5;
+    left: 750px;
+    top: 125px;
+    background-color: #fff;
+}
+.char__basics {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-column-gap: 25px;
+    column-gap: 25px;
+}
+.char__info-name {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    text-transform: uppercase;
+}
+.char__btns {
+    margin-top: 35px;
+}
+.char__descr {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 18px;
+}
+.char__comics {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.char__comics-list {
+    position: relative;
+    margin-top: 10px;
+}
+.cropped {
+    width: 200px;
+    height: 318px;
+}
+.char__realName, .char__species, .char__gender, .char__citizenship, .char__birthDay, .char__deathDay, .char__status, .char__actors, .char__movies {
+    height: 1px;
+    width: 1px;
+    display: none;
+}
+.croppedForInfo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
