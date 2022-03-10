@@ -4,6 +4,7 @@ let dataStart = fetch("dbHeroes.json");
 
 let charsList = document.getElementsByClassName("char__item");
 let select;
+let chars;
 
 let ul;
 let counter = 0;
@@ -137,23 +138,54 @@ const elemInfoShower = () => {
 };
 
 // const removeAll = () => {
-//     let allchars
+//     let allChars = document.querySelectorAll(".char__item");
+//     for (let char of allChars) {
+//         char.remove();
+//     }
 // };
 
 const filterHuman = () => {
-    // let arr = [];
-    const humanChars = document.getElementsByClassName("char__species");
-    console.log(humanChars);
-    for (let char of humanChars) {
+    chars = document.querySelectorAll(".char__species");
+
+    chars.forEach((char) => {
         let parentLI = char.closest("li");
-        // console.log(char);
-        if (char.innerHTML == "human") {
-            // let parentLI = char.closest("li");
-            parentLI.remove();
-            // console.log(char.closest('li'));
+        if (char.innerHTML != "human") {
+            parentLI.style.display = "none";
+        } else {
+            parentLI.style.display = "block";
         }
-    }
-    // console.log(arr);
+    });
+    const moreButton = document.getElementById("more");
+    moreButton.style.display = "none";
+};
+
+const filterAmerican = () => {
+    chars = document.querySelectorAll(".char__citizenship");
+
+    chars.forEach((char) => {
+        let parentLI = char.closest("li");
+        if (char.innerHTML != "American") {
+            parentLI.style.display = "none";
+        } else {
+            parentLI.style.display = "block";
+        }
+    });
+    const moreButton = document.getElementById("more");
+    moreButton.style.display = "none";
+};
+const filterFemale = () => {
+    chars = document.querySelectorAll(".char__gender");
+
+    chars.forEach((char) => {
+        let parentLI = char.closest("li");
+        if (char.innerHTML != "female") {
+            parentLI.style.display = "none";
+        } else {
+            parentLI.style.display = "block";
+        }
+    });
+    const moreButton = document.getElementById("more");
+    moreButton.style.display = "none";
 };
 
 dataStart
@@ -169,14 +201,15 @@ dataStart
         moreButton.addEventListener("click", charsShower);
     })
     .then(() => {
-        // filterHuman();
-        // removeAll();
         select = document.querySelector(".select-css");
         select.addEventListener("change", () => {
             if (select.selectedIndex == 1) {
                 filterHuman();
+            } else if (select.selectedIndex == 2) {
+                filterAmerican();
+            } else if (select.selectedIndex == 3) {
+                filterFemale();
             }
-            // console.log(select);
         });
     })
     .catch((error) => {
