@@ -2,6 +2,17 @@
     box-sizing: border-box;
     font-family: "Balsamiq Sans", cursive;
 }
+body {
+    background-image: url(./marvel.jpg);
+    z-index: -1;
+    width: 100%;
+    background-attachment: fixed;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0;
+    /* position: fixed; */
+}
 .select-css {
     display: block;
     font-size: 16px;
@@ -10,8 +21,8 @@
     color: #444;
     line-height: 1.3;
     padding: 0.6em 1.4em 0.5em 0.8em;
-    width: 25%;
-    max-width: 25%;
+    width: 15%;
+    max-width: 15%;
     box-sizing: border-box;
     margin: 0;
     border: 1px solid #aaa;
@@ -57,12 +68,14 @@ dl {
     grid-column-gap: 25px;
     column-gap: 25px;
     align-items: start;
+    padding-left: 25px;
+    padding-bottom: 100px;
 }
 .char__grid {
     display: grid;
     grid-template-columns: repeat(3, 200px);
     grid-column-gap: 25px;
-    column-gap: 25px;
+    column-gap: 45px;
     grid-row-gap: 30px;
     row-gap: 30px;
 }
@@ -70,16 +83,18 @@ dl {
     width: 200px;
     height: 318px;
     background-color: #232222;
-    box-shadow: 5px 5px 10px rgb(0 0 0 / 25%);
+    box-shadow: 15px 15px 10px rgba(221, 19, 19, 0.25);
     padding: 15px;
     cursor: pointer;
     transition: 0.3s transform;
+    display: none;
 }
 .char__item img {
     width: 200px;
-    height: 200px;
-    object-fit: cover;
+    /* height: 100%; */
+    /* object-fit: cover; */
     transform: translate(-15px, -15px);
+    opacity: 50%;
 }
 .button__long {
     display: block;
@@ -92,8 +107,10 @@ dl {
     line-height: 29px;
     text-transform: uppercase;
     color: #fff;
-    /* margin-top: -75px;
-    margin-bottom: 50px;
+    margin-top: -95px;
+    height: 0;
+    /* z-index: 2; */
+    /* margin-bottom: 50px;
     padding-left: 10px; */
 }
 .char__info {
@@ -105,11 +122,12 @@ dl {
     /* position: relative; */
     /* width: 500px; */
     /* height: 250px; */
-    position: absolute;
+    position: fixed;
     z-index: 5;
-    left: 750px;
-    top: 125px;
-    background-color: #fff;
+    left: 800px;
+    top: 110px;
+    background-color: #232222;
+    color: rgb(165, 159, 159);
 }
 .char__basics {
     display: flex;
@@ -147,6 +165,8 @@ dl {
 .cropped {
     width: 200px;
     height: 318px;
+    object-fit: cover;
+    overflow: hidden;
 }
 .char__realName,
 .char__species,
@@ -162,15 +182,16 @@ dl {
     display: none;
 }
 .croppedForInfo {
-    width: 150px;
-    height: 150px;
+    width: 400px;
+    height: 400px;
     object-fit: contain;
 }
 .left-descr {
     text-align: end;
     margin-left: 20px;
 }
-.center-descr__text, span {
+.center-descr__text,
+span {
     font-weight: bold;
     text-decoration: underline;
 }
@@ -184,6 +205,7 @@ dl {
 }
 .movies-list {
     margin-top: 25px;
+    margin-left: 50px;
 }
 .descr-nowrap {
     display: flex;
@@ -191,4 +213,29 @@ dl {
     flex-basis: 100%;
     justify-content: space-between;
 }
-
+.show {
+    display: block;
+}
+.button {
+    min-width: 101px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: 0.3s transform;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.inner {
+    position: relative;
+    line-height: 18px;
+    padding: 0 18px;
+    transition: none;
+}
+.show1 {
+    display: block;
+}
+.char__info-heigth, .center-descr__text{
+    height: 50px;
+}
