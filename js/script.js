@@ -15,6 +15,10 @@ const loadButtonHider = () => {
     const moreButton = document.getElementById("more");
     moreButton.style.display = "none";
 };
+const loadButtonShower = () => {
+    const moreButton = document.getElementById("more");
+    moreButton.style.display = "block";
+};
 
 const removeDescr = () => {
     let description = document.querySelector(".char__info");
@@ -49,7 +53,6 @@ const deleteDescr = () => {
             </div>
         </div>`;
     });
-    
 };
 
 const elemsCreator = (data) => {
@@ -212,6 +215,68 @@ const filterFemale = () => {
     loadButtonHider();
 };
 
+const filmsFilter = () => {
+    const filmInput = document.querySelector(".input-css");
+
+    filmInput.addEventListener("input", (e) => {
+        let filmsArr = [];
+        const allChars = document.getElementsByClassName("char__item");
+        for (let char of allChars) {
+            char.style.display = "none";
+        };
+
+        const show1Chars = document.getElementsByClassName("show1");
+        for (let char of show1Chars) {
+            char.style.display = "block";
+            loadButtonShower()
+            
+        }
+
+        arr.forEach((film) => {
+            if (film.startsWith(`${e.target.value}`) && e.target.value.length > 0) {
+                filmsArr.push(film);
+            }
+        });
+
+        const filmsArr1 = new Set(filmsArr);
+
+        if (filmsArr1.size == 0 && e.target.value.length != 0) {
+            document.querySelector(".char__info").innerHTML = `
+            <div class="descr-nowrap">
+                <p class="descr">К сожалению, в таких фильмах наши герои не снимались...</p>
+            </div>`;
+        } else {
+            const filmsList = Array.from(filmsArr1).join("<br>");
+            console.log(filmsList);
+            document.querySelector(".char__info").innerHTML = ` <div class="descr">${filmsList}</div>
+            `;
+            filmsFilterCardsShower(e.target.value);
+        }
+
+        if (e.target.value.length == 0) {
+            document.querySelector(".char__info").innerHTML = `
+            <div className="char__basics">
+                <img src="loading.gif" alt="{name}" />
+                <div class="descr">Description will be right here!</div>
+                <div class="descr">Try it - by click on character's card!</div>
+            </div>`;
+        }
+    });
+};
+
+const filmsFilterCardsShower = (filterInput) => {
+    const charMovies = document.getElementsByClassName("char__movies");
+    for (let film of charMovies) {
+        if (!film.innerText.includes(filterInput) && filterInput) {
+            film.closest("li").style.display = "none";
+            // console.log(film.closest("li"));
+            loadButtonHider();
+        } else if (film.innerText.includes(filterInput) && filterInput) {
+            film.closest("li").style.display = "block";
+        }
+    }
+};
+
 dataStart
     .then((response) => response.json())
     .then((data) => {
@@ -237,8 +302,7 @@ dataStart
         });
     })
     .then(() => {
-        // let charsMovies = document.get;
-        // deleteDescr();
+        filmsFilter();
     })
     .catch((error) => {
         console.error(error.message);
