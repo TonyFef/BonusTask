@@ -9,6 +9,12 @@ let chars;
 let ul;
 let counter = 0;
 let counter2 = 1;
+let arr = [];
+
+const loadButtonHider = () => {
+    const moreButton = document.getElementById("more");
+    moreButton.style.display = "none";
+};
 
 const removeDescr = () => {
     let description = document.querySelector(".char__info");
@@ -22,8 +28,28 @@ const charsShower = () => {
     for (let item of charsList) {
         if (item.classList.contains(`show${counter2}`)) {
             item.classList.add("show");
+            if (counter2 == 9) {
+                loadButtonHider();
+            }
         }
     }
+};
+
+const deleteDescr = () => {
+    const closeBtn = document.querySelector(".popup-close");
+
+    closeBtn.addEventListener("click", () => {
+        let description = document.querySelector(".char__info");
+        description.innerHTML = `
+        <div class="char__info">
+            <div className="char__basics">
+                <img src="loading.gif" alt="{name}" />
+                <div>Description will be right here!</div>
+                <div>Try it - by click on character's card!</div>
+            </div>
+        </div>`;
+    });
+    
 };
 
 const elemsCreator = (data) => {
@@ -54,6 +80,10 @@ const elemsCreator = (data) => {
             newCharacter.classList.add("char__item", "show9");
         }
 
+        if (typeof item.movies != "undefined") {
+            arr.push(...item.movies);
+        }
+
         newCharacter.innerHTML = `<img src="${item.photo}" alt="Personage" class='cropped'>
         <div class="char__name">${item.name}</div>
         <span class="char__realName">${item.realName}</span>
@@ -68,6 +98,7 @@ const elemsCreator = (data) => {
         `;
         ul.append(newCharacter);
     });
+    // console.log(arr);
 };
 
 const elemInfoShower = () => {
@@ -98,6 +129,7 @@ const elemInfoShower = () => {
             newCharDescr.innerHTML = `
                 <div class="char__basics">
                     <div class="descr-nowrap">
+                    <button class="popup-close">&times;</button>
                         <div class="first-descr">
                             <img src="${parentImgSrc}" alt="{name}" class='croppedForInfo'/>
                             <div class="first-descr-name">${parentName}</div>
@@ -133,16 +165,11 @@ const elemInfoShower = () => {
                 </div>
             </div>`;
             parentForappend.append(newCharDescr);
+
+            deleteDescr();
         });
     }
 };
-
-// const removeAll = () => {
-//     let allChars = document.querySelectorAll(".char__item");
-//     for (let char of allChars) {
-//         char.remove();
-//     }
-// };
 
 const filterHuman = () => {
     chars = document.querySelectorAll(".char__species");
@@ -155,8 +182,7 @@ const filterHuman = () => {
             parentLI.style.display = "block";
         }
     });
-    const moreButton = document.getElementById("more");
-    moreButton.style.display = "none";
+    loadButtonHider();
 };
 
 const filterAmerican = () => {
@@ -170,8 +196,7 @@ const filterAmerican = () => {
             parentLI.style.display = "block";
         }
     });
-    const moreButton = document.getElementById("more");
-    moreButton.style.display = "none";
+    loadButtonHider();
 };
 const filterFemale = () => {
     chars = document.querySelectorAll(".char__gender");
@@ -184,8 +209,7 @@ const filterFemale = () => {
             parentLI.style.display = "block";
         }
     });
-    const moreButton = document.getElementById("more");
-    moreButton.style.display = "none";
+    loadButtonHider();
 };
 
 dataStart
@@ -211,6 +235,10 @@ dataStart
                 filterFemale();
             }
         });
+    })
+    .then(() => {
+        // let charsMovies = document.get;
+        // deleteDescr();
     })
     .catch((error) => {
         console.error(error.message);

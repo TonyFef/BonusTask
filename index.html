@@ -9,14 +9,23 @@
         <title>Additional project</title>
     </head>
     <body>
-        <ul>
+        <ul class="filters-list">
             <li>
                 <label>Фильтр</label>
                 <select class="select-css" id="filter">
-                    <option value="filter-default">Choose a filter:</option>
+                    <option value="filter-default">Common filtres</option>
                     <option value="liked">Humans</option>
                     <option value="wantToWatch">Americans</option>
                     <option value="all">Female</option>
+                </select>
+            </li>
+            <li>
+                <label>Фильтр</label>
+                <select class="select-css" id="filter2">
+                    <option value="filter-default">Films filter</option>
+                    <!-- <option value="liked">Humans</option>
+                    <option value="wantToWatch">Americans</option>
+                    <option value="all">Female</option> -->
                 </select>
             </li>
         </ul>
@@ -42,6 +51,7 @@
                 </button>
             </div>
             <div class="char__info">
+                <!-- <button class="popup-close">&times;</button> -->
                 <div className="char__basics">
                     <img src="loading.gif" alt="{name}" />
                     <div>Description will be right here!</div>
