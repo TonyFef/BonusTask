@@ -31,7 +31,7 @@ const charsShower = () => {
     counter2++;
     for (let item of charsList) {
         if (item.classList.contains(`show${counter2}`)) {
-            item.classList.add("show");
+            item.style.display = "block";
             if (counter2 == 9) {
                 loadButtonHider();
             }
@@ -101,7 +101,6 @@ const elemsCreator = (data) => {
         `;
         ul.append(newCharacter);
     });
-    // console.log(arr);
 };
 
 const elemInfoShower = () => {
@@ -137,25 +136,27 @@ const elemInfoShower = () => {
                             <img src="${parentImgSrc}" alt="{name}" class='croppedForInfo'/>
                             <div class="first-descr-name">${parentName}</div>
                         </div>    
-                        <div class="center-descr">
-                            <div class="center-descr__text">Real name: </div>
-                            <div class="center-descr__text">Species: </div>
-                            <div class="center-descr__text">Gender: </div>
-                            <div class="center-descr__text">Citizenship: </div>
-                            <div class="center-descr__text">BirthDay: </div>
-                            <div class="center-descr__text">DeathDay: </div>
-                            <div class="center-descr__text">Status: </div>
-                            <div class="center-descr__text">Actors: </div>    
-                        </div>
-                        <div class="left-descr">
-                            <div class="char__info-realName char__info-heigth">${parentRealName}</div>
-                            <div class="char__info-name char__info-heigth">${parentSpecies}</div>
-                            <div class="char__info-name char__info-heigth">${parentGender}</div>
-                            <div class="char__info-name char__info-heigth">${parentCitizenship}</div>
-                            <div class="char__info-name char__info-heigth">${parentBirthDay}</div>
-                            <div class="char__info-name char__info-heigth">${parentDeathDay}</div>
-                            <div class="char__info-name char__info-heigth">${parentStatus}</div>
-                            <div class="char__info-name char__info-heigth">${parentActors}</div>    
+                        <div class="common-descr">
+                            <div class="center-descr">
+                                <div class="center-descr__text">Real name: </div>
+                                <div class="center-descr__text">Species: </div>
+                                <div class="center-descr__text">Gender: </div>
+                                <div class="center-descr__text">Citizenship: </div>
+                                <div class="center-descr__text">BirthDay: </div>
+                                <div class="center-descr__text">DeathDay: </div>
+                                <div class="center-descr__text">Status: </div>
+                                <div class="center-descr__text">Actors: </div>    
+                            </div>
+                            <div class="left-descr">
+                                <div class="char__info-realName char__info-heigth">${parentRealName}</div>
+                                <div class="char__info-name char__info-heigth">${parentSpecies}</div>
+                                <div class="char__info-name char__info-heigth">${parentGender}</div>
+                                <div class="char__info-name char__info-heigth">${parentCitizenship}</div>
+                                <div class="char__info-name char__info-heigth">${parentBirthDay}</div>
+                                <div class="char__info-name char__info-heigth">${parentDeathDay}</div>
+                                <div class="char__info-name char__info-heigth">${parentStatus}</div>
+                                <div class="char__info-name char__info-heigth">${parentActors}</div>    
+                            </div>
                         </div>
                     </div>
                 <div class="movies-list">
@@ -176,6 +177,7 @@ const elemInfoShower = () => {
 
 const filterHuman = () => {
     chars = document.querySelectorAll(".char__species");
+    document.querySelector(".input-css").value = "";
 
     chars.forEach((char) => {
         let parentLI = char.closest("li");
@@ -190,6 +192,7 @@ const filterHuman = () => {
 
 const filterAmerican = () => {
     chars = document.querySelectorAll(".char__citizenship");
+    document.querySelector(".input-css").value = "";
 
     chars.forEach((char) => {
         let parentLI = char.closest("li");
@@ -203,6 +206,7 @@ const filterAmerican = () => {
 };
 const filterFemale = () => {
     chars = document.querySelectorAll(".char__gender");
+    document.querySelector(".input-css").value = "";
 
     chars.forEach((char) => {
         let parentLI = char.closest("li");
@@ -219,17 +223,43 @@ const filmsFilter = () => {
     const filmInput = document.querySelector(".input-css");
 
     filmInput.addEventListener("input", (e) => {
+        switch (e.target.value) {
+            case "a":
+                e.target.value = "A";
+                break;
+            case "d":
+                e.target.value = "D";
+                break;
+            case "t":
+                e.target.value = "T";
+                break;
+            case "c":
+                e.target.value = "C";
+                break;
+            case "g":
+                e.target.value = "G";
+                break;
+            case "i":
+                e.target.value = "I";
+                break;
+            case "b":
+                e.target.value = "B";
+                break;
+            case "s":
+                e.target.value = "S";
+                break;
+        }
+
         let filmsArr = [];
         const allChars = document.getElementsByClassName("char__item");
         for (let char of allChars) {
             char.style.display = "none";
-        };
+        }
 
         const show1Chars = document.getElementsByClassName("show1");
         for (let char of show1Chars) {
             char.style.display = "block";
-            loadButtonShower()
-            
+            loadButtonShower();
         }
 
         arr.forEach((film) => {
@@ -247,7 +277,7 @@ const filmsFilter = () => {
             </div>`;
         } else {
             const filmsList = Array.from(filmsArr1).join("<br>");
-            console.log(filmsList);
+            // console.log(filmsList);
             document.querySelector(".char__info").innerHTML = ` <div class="descr">${filmsList}</div>
             `;
             filmsFilterCardsShower(e.target.value);
@@ -269,12 +299,17 @@ const filmsFilterCardsShower = (filterInput) => {
     for (let film of charMovies) {
         if (!film.innerText.includes(filterInput) && filterInput) {
             film.closest("li").style.display = "none";
-            // console.log(film.closest("li"));
             loadButtonHider();
         } else if (film.innerText.includes(filterInput) && filterInput) {
             film.closest("li").style.display = "block";
         }
     }
+};
+
+const loadButtonFunct = () => {
+    const moreButton = document.getElementById("more");
+    counter2 = 1;
+    moreButton.addEventListener("click", charsShower);
 };
 
 dataStart
@@ -286,8 +321,7 @@ dataStart
         elemInfoShower();
     })
     .then(() => {
-        const moreButton = document.getElementById("more");
-        moreButton.addEventListener("click", charsShower);
+        loadButtonFunct();
     })
     .then(() => {
         select = document.querySelector(".select-css");
@@ -298,6 +332,16 @@ dataStart
                 filterAmerican();
             } else if (select.selectedIndex == 3) {
                 filterFemale();
+            } else if (select.selectedIndex == 0) {
+                const allChars = document.getElementsByClassName("char__item");
+                for (let char of allChars) {
+                    char.style.display = "block";
+                    if (!char.classList.contains("show1")) {
+                        char.style.display = "none";
+                    }
+                }
+                loadButtonShower();
+                loadButtonFunct();
             }
         });
     })

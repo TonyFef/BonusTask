@@ -259,6 +259,7 @@ span {
     height: 50px;
 }
 .filters-list {
+    margin-left: 25px;
     display: flex;
     width: 600px;
     justify-content: space-between;
@@ -278,4 +279,79 @@ span {
 }
 .descr {
     font-size: 20px;
+}
+.common-descr {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 1625px) {
+    .select-css,
+    .input-css {
+        font-size: 12px;
+        width: 175px;
+    }
+    .filters-list {
+        width: 400px;
+    }
+    .char__item,
+    .char__item img {
+        width: 175px;
+        height: 235px;
+    }
+    .char__grid {
+        grid-column-gap: 20px;
+    }
+    .char__info {
+        left: 700px;
+        max-width: 750px;
+    }
+}
+
+@media (max-width: 1480px) {
+    .croppedForInfo {
+        width: 300px;
+        height: 300px;
+    }
+    .char__info {
+        margin-right: 20px;
+    }
+}
+@media (max-width: 1370px) {
+    body {
+        background-size: cover;
+    }
+    .center-descr {
+        display: none;
+    }
+    .char__item,
+    .char__item img {
+        width: 125px;
+        height: 185px;
+    }
+    .char__grid {
+        grid-column-gap: 0;
+        grid-template-columns: repeat(3, 150px);
+    }
+    .char__info {
+        left: 500px;
+        top: 25px;
+        max-width: 550px;
+    }
+    .button__long {
+        margin: 20px 130px;
+    }
+    .croppedForInfo {
+        width: 225px;
+        height: 225px;
+    }
+    .char__info-heigth {
+        /* font-size: 12px; */
+        height: 25px;
+    }
+    .char__name {
+        font-size: 16px;
+        line-height: 18px;
+        margin-top: -70px;
+    }
 }
