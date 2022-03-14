@@ -114,16 +114,16 @@ const elemInfoShower = () => {
 
             const parent = e.target.closest(".char__item");
             const parentImgSrc = parent.querySelector("img").src;
-            const parentName = parent.querySelector(".char__name").textContent;
-            const parentRealName = parent.querySelector(".char__realName").textContent;
-            const parentSpecies = parent.querySelector(".char__species").textContent;
-            const parentGender = parent.querySelector(".char__gender").textContent;
-            const parentCitizenship = parent.querySelector(".char__citizenship").textContent;
-            const parentBirthDay = parent.querySelector(".char__birthDay").textContent;
-            const parentDeathDay = parent.querySelector(".char__deathDay").textContent;
-            const parentStatus = parent.querySelector(".char__status").textContent;
-            const parentActors = parent.querySelector(".char__actors").textContent;
-            const parentMovies = parent.querySelector(".char__movies").textContent.split(",").join("<br>");
+            let parentName = parent.querySelector(".char__name").textContent;
+            let parentRealName = parent.querySelector(".char__realName").textContent;
+            let parentSpecies = parent.querySelector(".char__species").textContent;
+            let parentGender = parent.querySelector(".char__gender").textContent;
+            let parentCitizenship = parent.querySelector(".char__citizenship").textContent;
+            let parentBirthDay = parent.querySelector(".char__birthDay").textContent;
+            let parentDeathDay = parent.querySelector(".char__deathDay").textContent;
+            let parentStatus = parent.querySelector(".char__status").textContent;
+            let parentActors = parent.querySelector(".char__actors").textContent;
+            let parentMovies = parent.querySelector(".char__movies").textContent.split(",").join("<br>");
 
             const newCharDescr = document.createElement("div");
             newCharDescr.classList.add("char__info");
@@ -223,32 +223,10 @@ const filmsFilter = () => {
     const filmInput = document.querySelector(".input-css");
 
     filmInput.addEventListener("input", (e) => {
-        switch (e.target.value) {
-            case "a":
-                e.target.value = "A";
-                break;
-            case "d":
-                e.target.value = "D";
-                break;
-            case "t":
-                e.target.value = "T";
-                break;
-            case "c":
-                e.target.value = "C";
-                break;
-            case "g":
-                e.target.value = "G";
-                break;
-            case "i":
-                e.target.value = "I";
-                break;
-            case "b":
-                e.target.value = "B";
-                break;
-            case "s":
-                e.target.value = "S";
-                break;
+        if (e.target.value != "") {
+            e.target.value = e.target.value[0].toUpperCase() + e.target.value.slice(1);
         }
+        console.log(e.target.value[0]);
 
         let filmsArr = [];
         const allChars = document.getElementsByClassName("char__item");
@@ -263,7 +241,7 @@ const filmsFilter = () => {
         }
 
         arr.forEach((film) => {
-            if (film.startsWith(`${e.target.value}`) && e.target.value.length > 0) {
+            if (film.includes(`${e.target.value}`) && e.target.value.length > 0) {
                 filmsArr.push(film);
             }
         });
@@ -277,7 +255,6 @@ const filmsFilter = () => {
             </div>`;
         } else {
             const filmsList = Array.from(filmsArr1).join("<br>");
-            // console.log(filmsList);
             document.querySelector(".char__info").innerHTML = ` <div class="descr">${filmsList}</div>
             `;
             filmsFilterCardsShower(e.target.value);

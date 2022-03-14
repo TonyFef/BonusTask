@@ -257,6 +257,7 @@ span {
 .char__info-heigth,
 .center-descr__text {
     height: 50px;
+    overflow: hidden;
 }
 .filters-list {
     margin-left: 25px;
